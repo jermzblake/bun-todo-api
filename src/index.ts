@@ -2,12 +2,13 @@ import { Elysia } from 'elysia'
 import * as mongoose from 'mongoose'
 import { taskPlugin } from './plugins/task.plugin'
 
-const apiUrl = process.env.DATABASE_URL!
+const dbUrl = process.env.DATABASE_URL!
 
-await mongoose.connect(apiUrl)
+await mongoose.connect(dbUrl)
 
 //APPLICATION
 const app = new Elysia().use(taskPlugin)
+.get('/', () => '🦊 Tasks is running')
 
 //SERVER
 app.listen(3000)
