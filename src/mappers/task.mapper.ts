@@ -1,24 +1,24 @@
-import type { TaskBusinessObject } from "../types/task.type"
-import type { Task } from "../models/task"
+import type { TaskBusinessObject } from '../types/task.type'
+import type { Task } from '../models/task'
 
 interface PriorityMap {
-  [key: number]: string;
+  [key: number]: string
 }
 
 const priorityMap: PriorityMap = {
   1: 'high',
   2: 'medium',
-  3: 'low'
+  3: 'low',
 }
 
 const getKeyFromValue = (value: string): number | undefined => {
   for (const key in priorityMap) {
     if (priorityMap[key] === value) {
-      return parseInt(key);
+      return parseInt(key)
     }
   }
-  return undefined; // If value is not found
-};
+  return undefined // If value is not found
+}
 
 export const mapPriorityFromNumberToString = (priorityNumber: number): string => {
   return priorityMap[priorityNumber]
@@ -38,7 +38,7 @@ export const mapTaskFromTaskBusinessObject = (task: TaskBusinessObject): Task =>
     completed: task.completed,
     notes: task.notes,
     blocked: task.blocked,
-    created: task.created
+    created: task.created,
   }
 }
 
@@ -53,6 +53,6 @@ export const mapTaskBusinessObjectFromTask = (task: Task): TaskBusinessObject =>
     completed: task.completed,
     notes: task.notes as string,
     blocked: task.blocked,
-    created: task.created
+    created: task.created,
   }
 }
