@@ -8,12 +8,13 @@ export const getTasks = async () => {
 }
 
 export const getTask = async (id: string) => {
-  const task = await Task.findById(id)
-  if (!task) {
-    //update this to 404 Error
-    throw new Error('Task not found')
+  try {
+    const task = await Task.findById(id)
+    return task ? mapTaskBusinessObjectFromTask(task) : null
+  } catch (error) {
+    //TODO update this to 404 Error?
+    return null
   }
-  return mapTaskBusinessObjectFromTask(task)
 }
 
 export const createTask = async (task: TaskBusinessObject) => {
